@@ -1,0 +1,311 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-playfair), var(--font-geist-sans), serif;
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-playfair);
+  --font-body: var(--font-geist-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* Brand colors */
+  --linen: #F5E9E2;
+  --almond-silk: #E3B5A4;
+  --lobster-pink: #D44D5C;
+  --magenta-fire: #D6006B;
+  --midnight-violet: #160029;
+
+  --animate-marquee: marquee var(--duration) infinite linear;
+  --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+  @keyframes marquee {
+  from {
+    transform: translateX(0);
+    }
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
+  @keyframes marquee-vertical {
+  from {
+    transform: translateY(0);
+    }
+  to {
+    transform: translateY(calc(-100% - var(--gap)));
+    }
+  }
+  --animate-shine: shine var(--duration) infinite linear;
+  @keyframes shine {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 100% 100%; }
+    to { background-position: 0% 0%; }
+  }
+  --animate-meteor: meteor 5s linear infinite;
+  @keyframes meteor {
+    0% { transform: rotate(var(--angle)) translateX(0); opacity: 1; }
+    70% { opacity: 1; }
+    100% { transform: rotate(var(--angle)) translateX(-500px); opacity: 0; }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+  }
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    14% { transform: scale(1.15); }
+    28% { transform: scale(1); }
+    42% { transform: scale(1.15); }
+    70% { transform: scale(1); }
+  }
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  @keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(0.7); }
+  }
+  @keyframes particle-drift {
+    0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(-120px) translateX(40px) rotate(360deg); opacity: 0; }
+  }
+}
+
+/* Light mode — Linen/Almond warmth */
+:root {
+  --background: #F5E9E2;
+  --foreground: #160029;
+  --card: #fff8f5;
+  --card-foreground: #160029;
+  --popover: #fff8f5;
+  --popover-foreground: #160029;
+  --primary: #D44D5C;
+  --primary-foreground: #F5E9E2;
+  --secondary: #E3B5A4;
+  --secondary-foreground: #160029;
+  --muted: #efddd5;
+  --muted-foreground: #D6006B;
+  --accent: #D6006B;
+  --accent-foreground: #F5E9E2;
+  --destructive: #D44D5C;
+  --border: rgba(212, 77, 92, 0.18);
+  --input: rgba(212, 77, 92, 0.12);
+  --ring: #D44D5C;
+  --chart-1: #D44D5C;
+  --chart-2: #773344;
+  --chart-3: #E3B5A4;
+  --chart-4: #F5E9E2;
+  --chart-5: #160029;
+  --radius: 1rem;
+  --sidebar: #fff8f5;
+  --sidebar-foreground: #160029;
+  --sidebar-primary: #D44D5C;
+  --sidebar-primary-foreground: #F5E9E2;
+  --sidebar-accent: #E3B5A4;
+  --sidebar-accent-foreground: #160029;
+  --sidebar-border: rgba(212, 77, 92, 0.15);
+  --sidebar-ring: #D44D5C;
+}
+
+/* Dark mode — Bright Magenta */
+.dark {
+  --background: #D6006B;
+  --foreground: #fff0f6;
+  --card: #bf005f;
+  --card-foreground: #fff0f6;
+  --popover: #bf005f;
+  --popover-foreground: #fff0f6;
+  --primary: #fff0f6;
+  --primary-foreground: #D6006B;
+  --secondary: #e8007a;
+  --secondary-foreground: #fff0f6;
+  --muted: #c40063;
+  --muted-foreground: #ffc0e0;
+  --accent: #ff3d95;
+  --accent-foreground: #fff0f6;
+  --destructive: #ff6b9d;
+  --border: rgba(255, 255, 255, 0.2);
+  --input: rgba(255, 255, 255, 0.15);
+  --ring: #fff0f6;
+  --chart-1: #fff0f6;
+  --chart-2: #ffc0e0;
+  --chart-3: #ff3d95;
+  --chart-4: #e8007a;
+  --chart-5: #bf005f;
+  --sidebar: #bf005f;
+  --sidebar-foreground: #fff0f6;
+  --sidebar-primary: #fff0f6;
+  --sidebar-primary-foreground: #D6006B;
+  --sidebar-accent: #e8007a;
+  --sidebar-accent-foreground: #fff0f6;
+  --sidebar-border: rgba(255, 255, 255, 0.15);
+  --sidebar-ring: #fff0f6;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body), sans-serif;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+
+
+/* Scrollbar styling */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: #D44D5C;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover { background: #D6006B; }
+
+/* Glass morphism utility */
+.glass {
+  background: rgba(245, 233, 226, 0.12);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(212, 77, 92, 0.18);
+}
+.dark .glass {
+  background: rgba(214, 0, 107, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+/* Curved card */
+.curved-card {
+  border-radius: 2.5rem 0.75rem 2.5rem 0.75rem;
+}
+.curved-card-alt {
+  border-radius: 0.75rem 2.5rem 0.75rem 2.5rem;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #D44D5C 0%, #D6006B 50%, #E3B5A4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.dark .gradient-text {
+  background: linear-gradient(135deg, #fff0f6 0%, #ffc0e0 50%, #ff3d95 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animated background gradient */
+.animated-gradient {
+  background: linear-gradient(270deg, #D44D5C, #D6006B, #E3B5A4, #F5E9E2);
+  background-size: 400% 400%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+/* Float animation */
+.animate-float { animation: float 4s ease-in-out infinite; }
+.animate-heartbeat { animation: heartbeat 1.5s ease-in-out infinite; }
+.animate-spin-slow { animation: spin-slow 12s linear infinite; }
+.animate-twinkle { animation: twinkle 2s ease-in-out infinite; }
+
+/* View transition */
+::view-transition-old(root), ::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* Prose overrides */
+.love-letter-body {
+  font-family: var(--font-heading), serif;
+  line-height: 1.9;
+  letter-spacing: 0.01em;
+}
+
+/* Page transition wrapper */
+.page-content {
+  will-change: transform, opacity;
+}
+
+/* Particle */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  animation: particle-drift linear infinite;
+  pointer-events: none;
+}
+
+/* ===== COMIC VIDEO GAME NEO-BRUTALISM ===== */
+.comic-panel, .glass, .curved-card {
+  border: 3px solid #160029 !important;
+  box-shadow: 6px 6px 0px 0px #160029 !important;
+  transition: transform 0.1s ease, box-shadow 0.1s ease !important;
+}
+
+.comic-panel:active, .comic-button:active, .glass:active:not(header), .curved-card:active {
+  transform: translate(3px, 3px) !important;
+  box-shadow: 3px 3px 0px 0px #160029 !important;
+}
+
+.comic-button {
+  border: 3px solid #160029 !important;
+  box-shadow: 4px 4px 0px 0px #160029 !important;
+  transition: transform 0.1s ease, box-shadow 0.1s ease !important;
+}
+
+header.glass {
+  border: none !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
