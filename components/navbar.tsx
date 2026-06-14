@@ -51,12 +51,9 @@ export function Navbar() {
             />
             <span className="absolute inset-0 rounded-full bg-primary/20 blur-lg animate-heartbeat" />
           </motion.div>
-          <span
-            className="text-xl font-bold gradient-text"
-            style={{ fontFamily: "var(--font-playfair), serif" }}
-          >
-            365 Days of Us
-          </span>
+          <ComicText className="font-bold gradient-text" fontSize={1.2}>
+            adibunny
+          </ComicText>
         </Link>
 
         {/* Desktop Nav */}
